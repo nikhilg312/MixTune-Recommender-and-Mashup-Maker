@@ -165,9 +165,7 @@ def main():
             url.append(track["external_urls"]["spotify"])
         #make a csv file with the data
         df = pd.DataFrame({'Song Name':song_name, 'Artist Name':artist_name, 'Acousticness':acousticness, 'Danceability':danceability, 'Duration_ms':duration_ms, 'Energy':energy, 'Instrumentalness':instrumentalness, 'Loudness':loudness,'Liveness':liveness ,'Speechiness':speechiness, 'Time_signature':time_signature, 'Key':key, 'Valence':valence, 'Tempo':tempo, 'Mode':mode, 'Target':target, 'URL':url, 'Image':images})
-        df.to_csv('audio_features.csv', index=False)
-
-        df = pd.read_csv("Audio_features.csv")
+        
 
         from sklearn.preprocessing import MinMaxScaler
         feature_cols = ['Acousticness', 'Danceability', 'Duration_ms', 'Energy',
