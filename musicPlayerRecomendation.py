@@ -10,7 +10,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn import preprocessing
 import streamlit as st
 from youtubesearchpython import *
-from youtube_search import YoutubeSearch
 from pytube import YouTube
 from pydub import AudioSegment
 import moviepy.editor as mp
@@ -230,9 +229,9 @@ def main():
     if not (os.path.exists('media')):
         os.mkdir('media')
     dur=20
-    
-    getMashup=searchAndCreateMashup(result_frame,number,dur)
-    
+    with st.spinner("Please wait while we generate mashup for you"):
+        getMashup=searchAndCreateMashup(result_frame,number,dur)
+    st.success("Mashup Generated!!!!")
     st.write("Click the button below to download the mashup.")
 
     # The 'download_button' function provides the option to download the file when the button is clicked
