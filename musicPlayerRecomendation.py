@@ -233,9 +233,7 @@ def main():
     
         # The 'download_button' function provides the option to download the file when the button is clicked
         st.download_button(label='Click to download', data=open(getMashup, 'rb'), file_name='mashup.mp3', mime='audio/mpeg')
-        shutil.rmtree('audios')
-        shutil.rmtree('videos')
-        shutil.rmtree('media')
+        
     st.success("Mashup Generated!!!!")
 if __name__=="__main__":
     main()
