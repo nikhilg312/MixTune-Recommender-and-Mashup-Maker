@@ -70,11 +70,12 @@ def searchAndCreateMashup(result_frame,n,dur):
         if item not in l1:
             count += 1
             l1.append(item)
-    st.write(l1)
     data = [(element,index) for index,element in enumerate(list[:n])]
     with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
         executor.map(lambda x: downloading(*x), data)
+    st.write("hello")
     converting(n)
+    st.write("HEllo")
     merged=AudioSegment.empty()
     output=[]
     data2 = [(z, index, output) for index in range(n)]
