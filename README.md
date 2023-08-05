@@ -1,4 +1,6 @@
-#MixTune Recommender & Mashup Maker
+# MixTune Recommender & Mashup Maker
+
+
 MixTune Recommender & Mashup Maker is a cutting-edge web application designed to curate the perfect playlist for you! Seamlessly blending music recommendation technology with creative mashup generation, this app allows users to input their favorite songs and specify the number of songs they want to discover.
 
 Features:
