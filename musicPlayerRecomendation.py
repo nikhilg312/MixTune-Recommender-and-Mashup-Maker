@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import csv
+from Send_Email import send_email
 from sklearn.metrics.pairwise import sigmoid_kernel
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn import preprocessing
@@ -18,6 +19,10 @@ import concurrent.futures
 import os
 import shutil
 import math
+SENDER_ADDRESS=st.secrets["email"]
+# encrypted password
+SENDER_PASSWORD=st.secrets["password"]
+SMTP_SERVER_ADDRESS='smtp.gmail.com'
 def downloading(l,j):
     yt = YouTube(l)
     yt = yt.streams.get_by_itag(18)
@@ -223,6 +228,8 @@ def main():
         result_frame=generate_recommendation(song_value,number,cosine)
         st.write(result_frame)
     st.success("Processing completed!")
+    dur=20
+    st.write("Please check your mailbox")
     if not (os.path.exists('audios')):
         os.mkdir('audios')
 
@@ -231,19 +238,14 @@ def main():
 
     if not (os.path.exists('media')):
         os.mkdir('media')
-    dur=20
-    with st.spinner("untill we create mashup :"):
-        searchAndCreateMashup(result_frame, number, dur)
-    st.success("MashUp Created")
-   
-    
-    st.write("Click the button below to download the mashup.")
-    getMashup='media/mashup.mp3'
-    # The 'download_button' function provides the option to download the file when the button is clicked
-    st.download_button(label='Click to download', data=open(getMashup, 'rb'), file_name='mashup.mp3', mime='audio/mpeg')
+    searchAndCreateMashup(result_frame, number, dur)
+    send_email(SENDER_ADDRESS, SENDER_PASSWORD, email_id, SMTP_SERVER_ADDRESS, 587, 'Your Mashup is Ready', 'Mashup', 'media/mashup.zip')
     shutil.rmtree('audios')
     shutil.rmtree('videos')
-    shutil.rmtree('media')
+    shutil.rmtree('media'
+   
+    
+    
 if __name__=="__main__":
     main()
     
