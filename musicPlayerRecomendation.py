@@ -30,7 +30,7 @@ def convert(index):
     clip = mp.VideoFileClip(video_file)
     audio = clip.audio
     audio.write_audiofile(audio_file)
-
+    
 def converting(n):
     with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
         futures = [executor.submit(convert, index) for index in range(n)]
@@ -40,17 +40,22 @@ def converting(n):
                 result = future.result()
             except Exception as e:
                 print(e)
+                
 def cutting(z,m,output):
         file='audios/song'+str(m)+'.mp3'
         sound = AudioSegment.from_mp3(file)
+    #Selecting Portion we want to cut
         StrtMin = 0
         StrtSec = 0
         EndMin = 0
         EndSec = min(z,sound.duration_seconds)
+    # Time to milliseconds conversion
         StrtTime = StrtMin*60*1000+StrtSec*1000
         EndTime = EndMin*60*1000+EndSec*1000
+    # Opening file and extracting portion of it
         extract = sound[StrtTime:EndTime]
-        output.append(extract)
+        output.append(extract)  
+
 def searchAndCreateMashup(result_frame,n,dur):
     z=dur
     s=math.ceil(n/19)
@@ -62,7 +67,6 @@ def searchAndCreateMashup(result_frame,n,dur):
         result = CustomSearch(search_query,VideoDurationFilter.short)
         if result.result()['result'][0]['duration'] != 'Live':
             list.append(result.result()['result'][0]['link'])
-    
     l1 = []
     count = 0
     for item in list:
@@ -85,7 +89,6 @@ def searchAndCreateMashup(result_frame,n,dur):
     zipObj = zipfile.ZipFile('media/mashup.zip', 'w')
     zipObj.write('media/mashup.mp3')
     zipObj.close()
-    return 'media/mashup.mp3'
     
     
     
@@ -229,8 +232,9 @@ def main():
     if not (os.path.exists('media')):
         os.mkdir('media')
     dur=20
-    
-    getMashup = searchAndCreateMashup(result_frame, number, dur)
+    with st.spinner("untill we create mashup :"):
+        searchAndCreateMashup(result_frame, number, dur)
+    st.success("MashUp Created")
    
     
     st.write("Click the button below to download the mashup.")
