@@ -229,14 +229,14 @@ def main():
     dur=20
     with st.spinner("Please wait while we generate mashup for you"):
         getMashup=searchAndCreateMashup(result_frame,number,dur)
+        st.write("Click the button below to download the mashup.")
+    
+        # The 'download_button' function provides the option to download the file when the button is clicked
+        st.download_button(label='Click to download', data=open(getMashup, 'rb'), file_name='mashup.mp3', mime='audio/mpeg')
+        shutil.rmtree('audios')
+        shutil.rmtree('videos')
+        shutil.rmtree('media')
     st.success("Mashup Generated!!!!")
-    st.write("Click the button below to download the mashup.")
-
-    # The 'download_button' function provides the option to download the file when the button is clicked
-    st.download_button(label='Click to download', data=open(getMashup, 'rb'), file_name='mashup.mp3', mime='audio/mpeg')
-    shutil.rmtree('audios')
-    shutil.rmtree('videos')
-    shutil.rmtree('media')
 if __name__=="__main__":
     main()
     
