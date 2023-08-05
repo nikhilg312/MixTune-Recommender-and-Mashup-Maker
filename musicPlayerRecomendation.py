@@ -63,7 +63,7 @@ def searchAndCreateMashup(result_frame,n,dur):
         result = CustomSearch(search_query,VideoDurationFilter.short)
         if result.result()['result'][0]['duration'] != 'Live':
             list.append(result.result()['result'][0]['link'])
-    st.write(list)
+    
     l1 = []
     count = 0
     for item in list:
