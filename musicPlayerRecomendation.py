@@ -239,8 +239,17 @@ def main():
     
     st.write("Click the button below to download the mashup.")
     getMashup='media/mashup.mp3'
-    # The 'download_button' function provides the option to download the file when the button is clicked
-    st.download_button(label='Click to download', data=open(getMashup, 'rb'), file_name='mashup.mp3', mime='audio/mpeg')
+    def download_file(file_path, file_name, mime_type):
+        with open(file_path, 'rb') as f:
+            bytes_data = f.read()
+        st.download_button(label='Click to download', data=bytes_data, file_name=file_name, mime=mime_type)
+
+    # Usage example
+    file_path = 'media/mashup.mp3'  # Replace this with the actual file path on your system
+    file_name = 'mashup.mp3'
+    mime_type = 'audio/mpeg'
+    
+    download_file(file_path, file_name, mime_type)
     shutil.rmtree('audios')
     shutil.rmtree('videos')
     shutil.rmtree('media')
