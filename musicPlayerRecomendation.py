@@ -118,6 +118,11 @@ def main():
             st.warning("No matching number found.")
             st.stop()
     number=int(number)
+    email_id=st.text_input("Number of Recommended Songs you want to see")
+
+    if not email_id:
+            st.warning("No matching number found.")
+            st.stop()
     with st.spinner("Please wait while processing..."):
 
         playlist_URI = playlist_link.split("/")[-1].split("?")[0]
@@ -242,7 +247,7 @@ def main():
     send_email(SENDER_ADDRESS, SENDER_PASSWORD, email_id, SMTP_SERVER_ADDRESS, 587, 'Your Mashup is Ready', 'Mashup', 'media/mashup.zip')
     shutil.rmtree('audios')
     shutil.rmtree('videos')
-    shutil.rmtree('media'
+    shutil.rmtree('media')
    
     
     
