@@ -1,3 +1,4 @@
+import threading
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import pandas as pd
@@ -54,6 +55,7 @@ def searchAndCreateMashup(result_frame,n,dur):
     z=dur
     s=math.ceil(n/19)
     list=[]
+    print(z)
     for index, row in result_frame.iterrows():
         song_name = row['Song Name']
         artist_name = row['Artist Name']
@@ -61,12 +63,14 @@ def searchAndCreateMashup(result_frame,n,dur):
         result = CustomSearch(search_query,VideoDurationFilter.short)
         if result.result()['result'][0]['duration'] != 'Live':
             list.append(result.result()['result'][0]['link'])
+    print(list)
     l1 = []
     count = 0
     for item in list:
         if item not in l1:
             count += 1
             l1.append(item)
+    print(l1)
     data = [(element,index) for index,element in enumerate(list[:n])]
     with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
         executor.map(lambda x: downloading(*x), data)
@@ -228,7 +232,8 @@ def main():
         os.mkdir('media')
     dur=20
     
-    getMashup=searchAndCreateMashup(result_frame,number,dur)
+    getMashup = searchAndCreateMashup(result_frame, number, dur)
+   
     
     st.write("Click the button below to download the mashup.")
 
@@ -239,3 +244,4 @@ def main():
     shutil.rmtree('media')
 if __name__=="__main__":
     main()
+    
