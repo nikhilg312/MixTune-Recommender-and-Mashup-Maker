@@ -55,7 +55,6 @@ def searchAndCreateMashup(result_frame,n,dur):
     z=dur
     s=math.ceil(n/19)
     list=[]
-    st.write(z)
     for index, row in result_frame.iterrows():
         song_name = row['Song Name']
         artist_name = row['Artist Name']
@@ -72,7 +71,6 @@ def searchAndCreateMashup(result_frame,n,dur):
             l1.append(item)
     data = [(element,index) for index,element in enumerate(list[:n])]
     with concurrent.futures.ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
-        print("hello")
         executor.map(lambda x: downloading(*x), data)
     converting(n)
     merged=AudioSegment.empty()
