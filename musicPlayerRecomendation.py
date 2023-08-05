@@ -118,10 +118,10 @@ def main():
             st.warning("No matching number found.")
             st.stop()
     number=int(number)
-    email_id=st.text_input("Number of Recommended Songs you want to see")
+    email_id=st.text_input("Enter The email Id")
 
     if not email_id:
-            st.warning("No matching number found.")
+            st.warning("No matching email found.")
             st.stop()
     with st.spinner("Please wait while processing..."):
 
