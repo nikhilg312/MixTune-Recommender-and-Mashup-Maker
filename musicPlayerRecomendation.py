@@ -101,9 +101,9 @@ def main():
         playlist_link = st.text_input("Enter your playlist link: ")
         song_value=st.text_input("Write the song name you want to recommend from this playlist")
         number=st.text_input("Number of Recommended Songs you want to see")
-        number=int(number)
         submitted = st.form_submit_button("Submit")
         if submitted:
+            number=int(number)
             with st.spinner("Please wait while processing..."):
 
                 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
