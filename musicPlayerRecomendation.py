@@ -235,6 +235,9 @@ def main():
         st.download_button(label='Click to download', data=open(getMashup, 'rb'), file_name='mashup.mp3', mime='audio/mpeg')
         
     st.success("Mashup Generated!!!!")
+    shutil.rmtree('audios')
+    shutil.rmtree('videos')
+    shutil.rmtree('media')
 if __name__=="__main__":
     main()
     
