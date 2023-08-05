@@ -223,6 +223,8 @@ def main():
             if not (os.path.exists('media')):
                 os.mkdir('media')
             st.write("Click the button below to download the mashup.")
+            dur=20
+            searchAndCreateMashup(result_frame,number,dur)
             getMashup='media/mashup.mp3'
             # The 'download_button' function provides the option to download the file when the button is clicked
             st.download_button(label='Click to download', data=open(getMashup, 'rb'), file_name='mashup.mp3', mime='audio/mpeg')
