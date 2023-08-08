@@ -97,7 +97,7 @@ def main():
     client_credentials_manager = SpotifyClientCredentials(
         client_id="71ba9810ebd04753bef391b4d5488e7e", client_secret="2336d2134d9c4a8db5a88c45a1cf7be4")
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-
+    
     #Getting user playlist
     playlist_link = st.text_input("Enter your playlist link: ")
     if not playlist_link:
@@ -117,14 +117,17 @@ def main():
 
         playlist_URI = playlist_link.split("/")[-1].split("?")[0]
         offset = 0
+        
         track_uris = []
         for i in range(100):
             a=[x["track"]["uri"] for x in sp.playlist_tracks(playlist_URI,offset=offset)["items"]]
+            print("hello")
             for i in a:
                 track_uris.append(i)
             offset += 100
         images = []
-
+        
+        print("hello Done")
         for i in range(len(track_uris)):
             track = sp.track(track_uris[i])
             images.append(track["album"]["images"][0]["url"])
