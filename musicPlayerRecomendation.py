@@ -95,7 +95,7 @@ def searchAndCreateMashup(result_frame,n,dur):
     
 def main():
     client_credentials_manager = SpotifyClientCredentials(
-        client_id="71ba9810ebd04753bef391b4d5488e7e", client_secret="2336d2134d9c4a8db5a88c45a1cf7be4")
+    client_id="5d4e251ba7094300b6d7dda7039cc60b", client_secret="2ded2e12f83b49dd99566ed90927e22c")
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     
     #Getting user playlist
