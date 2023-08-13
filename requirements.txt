@@ -6,7 +6,7 @@ seaborn==0.12.1
 scikit-learn==1.0.1
 streamlit==1.25.0
 youtube-search-python==1.6.6
-pytube==15.0.0
-pydub==0.25.1
-moviepy==1.0.3
+pytube
+pydub
+moviepy
 youtube-search==2.1.2
